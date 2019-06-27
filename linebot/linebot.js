@@ -12,7 +12,6 @@ var bot = linebot({
 function start() {
     
     bot.on('message', function (event) {
-
         let id = event.source.userId;
         console.log("id:" + id);
         router.route(event.message.text, event);

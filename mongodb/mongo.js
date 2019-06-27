@@ -32,7 +32,7 @@ function start(callback)
   });    
   
   /**
-   * 连接断开
+   * 連接斷開
    */
   mongoose.connection.on('disconnected', function () {    
       console.log('Mongoose connection disconnected');  

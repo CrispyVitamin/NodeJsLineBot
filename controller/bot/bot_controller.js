@@ -54,6 +54,7 @@ var bot_controller = {
             });
             return false;
         }
+        
         let result = command.split('變更餘額');
         if(result.length > 1) {
             let money = parseInt(result[1]);
