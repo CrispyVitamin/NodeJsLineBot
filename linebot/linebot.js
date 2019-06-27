@@ -16,16 +16,6 @@ function start() {
         let id = event.source.userId;
         console.log("id:" + id);
         router.route(event.message.text, event);
-/*
-        event.reply(event.message.text).then(function (data) {
-            // success
-            console.log("msg get:" + event.message.text);
-
-            
-
-        }).catch(function (error) {
-            // error
-        });*/
     });
 
     bot.listen('/linewebhook', 3000);

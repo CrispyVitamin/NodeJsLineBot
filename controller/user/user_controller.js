@@ -6,37 +6,33 @@ var controller = {
         User.find( { 'userid' : userID }).then(function(docs){
             let result = false;
             let userdoc = null;
-            if(docs.length){
+            if(docs.length) {
                 result = true;
                 userdoc = docs[0];
             }
-            else
-            {
+            else {
                 result = false;
             }
             callback(result, userdoc);
         });
     },
     newUser : function(userID, callback) {
-
         this.hasUser(userID, (result) => {
-            if(result === true)
-            {
+            if(result === true) {
                 console.log("user already exists: " + userID);
                 callback(0);
             }
-            else
-            {
+            else {
                 var user = new User();
                 user.userid = userID;
                 user.state = 0;
                 user.money = 0;
                 user.lastlogin = new Date();
-                user.save().then(function(){
+                user.save().then(function() {
                     console.log("user created: " + userID);
                     callback(1);
                 }).catch(
-                    function(error){
+                    function(error) {
                         console.log("user created error");
                         callback(2);
                     }
@@ -45,28 +41,22 @@ var controller = {
         });
     },
     queryFund : function(userID, callback) {
-
         User.findOne( { 'userid' : userID}).then(function(doc) {
-            if(!doc)
-            {
+            if(!doc) {
                 callback(-1);
             }
-            else
-            {
+            else {
                 let userObj = doc.toObject();
                 callback(userObj.money);
             }
         });
     },
     modifyFund : function(userID, money, callback) {
-
-        User.updateOne( { 'userid' : userID}, { 'money': money }, function(err, doc){
-            if(err)
-            {
+        User.updateOne( { 'userid' : userID}, { 'money': money }, function(err, doc) {
+            if(err) {
                 callback(-1);
             }
-            else
-            {
+            else {
                 callback(money);
             }
         });
